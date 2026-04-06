@@ -17,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/rrcw2025jashan/Car_Rental_Api/issues"
   },
-  "homepage": "https://github.com/rrcw2025jashan/Car_Rental_Api#readme"
+  "homepage": "https://github.com/rrcw2025jashan/Car_Rental_Api#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.1",
+    "express": "^5.2.1",
+    "firebase-admin": "^13.7.0",
+    "helmet": "^8.1.0",
+    "joi": "^18.1.2"
+  }
 }
