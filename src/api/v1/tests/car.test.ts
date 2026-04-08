@@ -26,5 +26,23 @@ describe("Car Service", () => {
     expect(result).toEqual(car);
     expect(getCars().length).toBe(1);
   });
+  
+
+  test("should find car by id", () => {
+    // Arrange
+    const car = {
+        id: "2",
+        brand: "Honda",
+        model: "Civic",
+        pricePerDay: 40
+    };
+    addCar(car);
+
+    // Act
+    const result = getCars().find(c => c.id === "2");
+
+    // Assert
+    expect(result).toEqual(car);
+    });
 
 });
