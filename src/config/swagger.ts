@@ -7,7 +7,24 @@ const options = {
       title: "Car Rental API",
       version: "1.0.0",
     },
+
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
+
   apis: ["./src/api/v1/routes/*.ts"],
 };
 
