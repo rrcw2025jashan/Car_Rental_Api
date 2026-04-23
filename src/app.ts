@@ -4,19 +4,21 @@ import bookingRoutes from "./api/v1/routes/bookingRoutes";
 import { limiter } from "./api/v1/middlewares/rateLimiter";
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./api/v1/config/swagger";
+import authRoutes from "./api/v1/routes/authRoutes";
+
 
 const app = express();
 
 app.use(express.json());
 
-// apply limiter only to API routes (better)
+// apply limiter to API routes 
 app.use("/cars", limiter);
 app.use("/bookings", limiter);
 
 // routes
 app.use("/cars", carRoutes);
 app.use("/bookings", bookingRoutes);
-
+app.use("/auth", authRoutes);
 // swagger
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
