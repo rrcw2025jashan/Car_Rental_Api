@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
-// extend request to include user
+// Extend Express Request
 export interface AuthRequest extends Request {
   user?: any;
 }
@@ -13,18 +13,27 @@ export const verifyToken = (
 ) => {
   const authHeader = req.headers.authorization;
 
-  // check if token exists
+  // Check if Authorization header exists
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401).json({ message: "No token provided" });
   }
 
+  // Extract token
   const token = authHeader.split(" ")[1];
 
-  try {
-    // verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
+  // Extra safety check 
+  if (!token) {
+    return res.status(401).json({ message: "Token missing" });
+  }
 
-    // attach user data to request
+  try {
+    // Verify token
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET as string
+    );
+
+    // Attach user data to request
     req.user = decoded;
 
     next();
