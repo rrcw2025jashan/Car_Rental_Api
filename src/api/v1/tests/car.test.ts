@@ -2,19 +2,17 @@ import { getCars, addCar } from "../services/carService";
 
 describe("Car Service", () => {
 
+  beforeEach(() => {
+    // reset cars arary
+    getCars().length = 0;
+  });
+
   test("should return empty cars initially", () => {
-    // Arrange
-    const expected: any[] = [];
-
-    // Act
     const result = getCars();
-
-    // Assert
-    expect(result).toEqual(expected);
+    expect(result).toEqual([]);
   });
 
   test("should add a car", () => {
-    // Arrange
     const car = {
       id: "1",
       brand: "Toyota",
@@ -22,29 +20,30 @@ describe("Car Service", () => {
       pricePerDay: 50
     };
 
-    // Act
     const result = addCar(car);
 
-    // Assert
     expect(result).toEqual(car);
     expect(getCars().length).toBe(1);
   });
 
   test("should find car by id", () => {
-    // Arrange
     const car = {
       id: "2",
       brand: "Honda",
       model: "Civic",
       pricePerDay: 40
     };
+
     addCar(car);
 
-    // Act
     const result = getCars().find(c => c.id === "2");
 
-    // Assert
     expect(result).toEqual(car);
+  });
+
+  test("should return undefined if car not found", () => {
+    const result = getCars().find(c => c.id === "999");
+    expect(result).toBeUndefined();
   });
 
 });
