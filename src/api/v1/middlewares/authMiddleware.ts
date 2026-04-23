@@ -13,7 +13,7 @@ export const verifyToken = (
 ) => {
   const authHeader = req.headers.authorization;
 
-  // Check if Authorization header exists
+  // Check forr authorization header exists
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401).json({ message: "No token provided" });
   }
