@@ -8,14 +8,14 @@ const app = express();
 app.use(express.json());
 app.use(limiter);
 
-// apply limiter only to API routes (better)
+// apply limiter to API routes 
 app.use("/cars", limiter);
 app.use("/bookings", limiter);
 
 // routes
 app.use("/cars", carRoutes);
 app.use("/bookings", bookingRoutes);
-
+app.use("/auth", authRoutes);
 // swagger
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 

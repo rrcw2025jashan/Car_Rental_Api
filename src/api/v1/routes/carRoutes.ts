@@ -1,5 +1,6 @@
 import { Router } from "express";
 import * as carController from "../controllers/carController";
+import { verifyToken } from "../middlewares/authMiddleware";
 
 const router = Router();
 
@@ -18,7 +19,9 @@ router.get("/", carController.getCars);
  * @swagger
  * /cars:
  *   post:
- *     summary: Add a new car
+ *     summary: Add a new car (Protected)
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -38,13 +41,15 @@ router.get("/", carController.getCars);
  *       201:
  *         description: Car created
  */
-router.post("/", carController.addCar);
+router.post("/", verifyToken, carController.addCar);
 
 /**
  * @swagger
  * /cars/{id}:
  *   put:
- *     summary: Update a car
+ *     summary: Update a car (Protected)
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
@@ -55,13 +60,15 @@ router.post("/", carController.addCar);
  *       200:
  *         description: Car updated
  */
-router.put("/:id", carController.updateCar);
+router.put("/:id", verifyToken, carController.updateCar);
 
 /**
  * @swagger
  * /cars/{id}:
  *   delete:
- *     summary: Delete a car
+ *     summary: Delete a car (Protected)
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
@@ -72,6 +79,6 @@ router.put("/:id", carController.updateCar);
  *       200:
  *         description: Car deleted
  */
-router.delete("/:id", carController.deleteCar);
+router.delete("/:id", verifyToken, carController.deleteCar);
 
 export default router;
