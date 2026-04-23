@@ -6,8 +6,26 @@ const options = {
     info: {
       title: "Car Rental API",
       version: "1.0.0",
+      description: "API for managing cars and bookings with JWT authentication",
     },
+
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
+
   apis: ["./src/api/v1/routes/*.ts"],
 };
 
