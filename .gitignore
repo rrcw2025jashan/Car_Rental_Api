@@ -1,0 +1,4 @@
+node_modules/
+dist/
+logs/
+Service_key.json
