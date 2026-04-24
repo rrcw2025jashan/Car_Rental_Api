@@ -6,7 +6,6 @@ const options = {
     info: {
       title: "Car Rental API",
       version: "1.0.0",
-      description: "API for managing cars and bookings with JWT authentication",
     },
 
     components: {
