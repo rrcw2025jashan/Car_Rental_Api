@@ -6,9 +6,17 @@ const router = Router();
 
 /**
  * @swagger
+ * tags:
+ *   name: Cars
+ *   description: Car management
+ */
+
+/**
+ * @swagger
  * /cars:
  *   get:
  *     summary: Get all cars
+ *     tags: [Cars]
  *     responses:
  *       200:
  *         description: List of cars
@@ -20,6 +28,7 @@ router.get("/", carController.getCars);
  * /cars:
  *   post:
  *     summary: Add a new car (Protected)
+ *     tags: [Cars]
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -48,6 +57,7 @@ router.post("/", verifyToken, carController.addCar);
  * /cars/{id}:
  *   put:
  *     summary: Update a car (Protected)
+ *     tags: [Cars]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -67,6 +77,7 @@ router.put("/:id", verifyToken, carController.updateCar);
  * /cars/{id}:
  *   delete:
  *     summary: Delete a car (Protected)
+ *     tags: [Cars]
  *     security:
  *       - bearerAuth: []
  *     parameters:
